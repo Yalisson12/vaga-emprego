@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vacante - Diseñador de Sistemas</title>
+
+<style>
+/* FUNDO ESPACIAL */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    background: 
+        radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 70%),
+        linear-gradient(180deg, rgba(13,27,42,0.8) 0%, transparent 100%);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ESTRELAS - VERSÃO QUE FUNCIONA 100% */
+.stars, .stars2, .stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* CAMADA 1 - MUITAS ESTRELAS BRANCAS (RÁPIDAS) */
+.stars {
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, #eee, transparent),
+        radial-gradient(3px 3px at 160px 30px, #fff, transparent),
+        /* + 50+ estrelas pequenas */
+        radial-gradient(1px 1px at 200px 120px, #fff, transparent),
+        radial-gradient(1px 1px at 250px 160px, #eee, transparent),
+        radial-gradient(2px 2px at 300px 90px, #fff, transparent),
+        radial-gradient(1px 1px at 350px 200px, #fff, transparent),
+        radial-gradient(2px 2px at 380px 140px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    animation: moveStars1 50s linear infinite;
+}
+
+/* CAMADA 2 - ESTRELAS MAIORES (MÉDIAS) */
+.stars2 {
+    background-image: 
+        radial-gradient(3px 3px at 50px 100px, #aaa, transparent),
+        radial-gradient(4px 4px at 150px 250px, #ccc, transparent),
+        radial-gradient(2px 2px at 250px 180px, #bbb, transparent),
+        radial-gradient(3px 3px at 350px 300px, #ddd, transparent),
+        radial-gradient(4px 4px at 450px 220px, #ccc, transparent);
+    background-repeat: repeat;
+    background-size: 500px 500px;
+    animation: moveStars2 100s linear infinite reverse;
+}
+
+/* CAMADA 3 - ESTRELAS LENTAS E GRANDES */
+.stars3 {
+    background-image: 
+        radial-gradient(6px 6px at 100px 200px, #fff, transparent),
+        radial-gradient(5px 5px at 300px 400px, #fff, transparent),
+        radial-gradient(7px 7px at 500px 300px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 600px 600px;
+    animation: moveStars3 150s linear infinite;
+}
+
+/* ANIMAÇÕES DAS ESTRELAS */
+@keyframes moveStars1 {
+    from { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    to { 
+        transform: translateY(-100px) rotate(1deg); 
+    }
+}
+
+@keyframes moveStars2 {
+    from { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    to { 
+        transform: translateY(-200px) rotate(-1deg); 
+    }
+}
+
+@keyframes moveStars3 {
+    from { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    to { 
+        transform: translateY(-300px) rotate(0.5deg); 
+    }
+}
+
+/* PISCAR */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.stars { animation: moveStars1 50s linear infinite, twinkle 3s ease-in-out infinite alternate; }
+.stars2 { animation: moveStars2 100s linear infinite, twinkle 4s ease-in-out infinite alternate 1s; }
+.stars3 { animation: moveStars3 150s linear infinite, twinkle 5s ease-in-out infinite alternate 2s; }
+
+/* RESTO DO CSS (igual ao anterior, mas otimizado) */
+.container {
+    max-width: 800px;
+    margin: 60px auto;
+    background: rgba(15, 15, 30, 0.92);
+    padding: 40px;
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+        0 0 50px rgba(0, 150, 255, 0.4),
+        inset 0 0 30px rgba(0, 195, 255, 0.1);
+    border: 1px solid rgba(0, 195, 255, 0.4);
+    animation: fadeIn 2s ease-out;
+    position: relative;
+    z-index: 10;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    color: #00c3ff;
+    text-shadow: 0 0 20px #00c3ff;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: #66e0ff;
+    margin-top: 35px;
+    border-left: 5px solid #00c3ff;
+    padding-left: 20px;
+}
+
+.badge {
+    background: linear-gradient(45deg, #00c3ff, #0077ff);
+    padding: 12px 24px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 25px;
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(0, 195, 255, 0.5); }
+    50% { box-shadow: 0 0 30px rgba(0, 195, 255, 0.8); }
+}
+
+ul { padding-left: 30px; }
+li { 
+    margin-bottom: 12px; 
+    transition: all 0.3s ease;
+}
+li:hover { 
+    color: #66e0ff; 
+    transform: translateX(10px); 
+}
+
+.button {
+    display: inline-block;
+    padding: 18px 36px;
+    background: linear-gradient(45deg, #00c3ff, #0077ff);
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 30px;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0, 195, 255, 0.4);
+}
+
+.button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 195, 255, 0.6);
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(0, 195, 255, 0.3);
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+<!-- ESTRELAS AGORA VÃO APARECER! 🌟 -->
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<div class="container">
+<h1>🚀 Diseñador de Sistemas Senior</h1>
+<div class="badge">💼 Full-time • 🌐 100% Remoto</div>
+
+<p><strong>🏢 Empresa:</strong> Tech & Info Ltda.</p>
+<p><strong>📍 Ubicación:</strong> Brasil (Remoto)</p>
+<p><strong>💰 Salario:</strong> R$ 12k - 18k + Beneficios</p>
+
+<h2>📋 Descripción del puesto</h2>
+<p>Unirte a nuestro equipo para <strong>diseñar arquitecturas innovadoras</strong> que impulsen el futuro de la tecnología.</p>
+
+<h2>✅ Responsabilidades principales</h2>
+<ul>
+<li>🎯 Diseñar sistemas escalables de alta performance</li>
+<li>⚡ Optimizar arquitecturas existentes</li>
+<li>🤝 Liderar equipos técnicos multidisciplinarios</li>
+<li>🚀 Implementar soluciones cloud-native</li>
+<li>🔒 Garantizar seguridad y compliance</li>
+</ul>
+
+<h2>📋 Requisitos mínimos</h2>
+<ul>
+<li>5+ años experiencia en arquitectura de software</li>
+<li>Expertise en AWS/Azure/GCP</li>
+<li>Dominio de microservicios y contenedores</li>
+<li>Experiencia con bases de datos distribuidas</li>
+<li>Inglés técnico avanzado</li>
+</ul>
+
+<a href="#" class="button">🚀 Postularme Ahora</a>
+
+<div class="footer">
+<p>📧 <strong>jobs@techinfo.com.br</strong> | 📱 (11) 99999-9999</p>
+<p>⏰ <em>Últimos 7 días para postularte</em></p>
+</div>
+</div>
+
+</body>
+</html>
